@@ -1,0 +1,24 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 2
+provider: virtualbox
+name: questline
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+  - ~/.ssh/id_rsa
+
+folders:
+  - map: ./
+    to: /home/vagrant/code/
+
+sites:
+  - map: questline.test
+    to: /home/vagrant/code/public
+
+databases:
+  - questline
+
+features:
+  - mariadb: true
