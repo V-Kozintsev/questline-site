@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IdeaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,7 +10,9 @@ Route::get('/', function () {
 
 Route::view('/about', 'about') -> name('about');
 Route::view('/process', 'process') -> name('process');
-Route::view('/ideas', 'ideas') -> name('ideas');
+
+Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas');
+Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
