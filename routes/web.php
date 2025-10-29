@@ -12,7 +12,7 @@ Route::view('/about', 'about') -> name('about');
 Route::view('/process', 'process') -> name('process');
 
 Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas');
-Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
+Route::post('/ideas', [IdeaController::class, 'store'])->middleware('auth')->name('ideas.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

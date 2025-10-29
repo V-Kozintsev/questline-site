@@ -10,7 +10,7 @@
 
     <x-header />
 
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <main class="flex-grow p-0 m-0">
         {{ $slot }}
     </main>
 

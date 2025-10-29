@@ -15,10 +15,12 @@ class IdeaController extends Controller
     public function store(Request $request){
 
         $validated = $request->validate([
-            'author_name' => 'required|max:255',
             'email' => 'nullable|email',
             'description' => 'required',
         ]);
+
+        $validated['author_name'] = auth()->user()->name;
+        $validated['email'] = auth()->user()->email;
 
         Idea::create($validated);
 

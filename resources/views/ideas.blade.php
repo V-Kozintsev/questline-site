@@ -14,19 +14,10 @@
         <!-- Форма отправки идеи -->
         <div class="bg-gray-800 p-6 rounded-lg mb-8">
             <h2 class="text-2xl font-bold mb-4">Отправить идею</h2>
-            <form method="POST" action="{{ route('ideas.store') }}">
+            @auth
+                <form method="POST" action="{{ route('ideas.store') }}">
                 @csrf
                 
-                <div class="mb-4">
-                    <label class="block mb-2">Ваше имя *</label>
-                    <input type="text" name="author_name" required 
-                           class="w-full p-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-400"
-                           value="{{ old('author_name') }}">
-                    @error('author_name')
-                        <span class="text-red-400 text-sm">{{ $message }}</span>
-                    @enderror
-                </div>
-
                 <div class="mb-4">
                     <label class="block mb-2">Email (необязательно)</label>
                     <input type="email" name="email" 
@@ -49,7 +40,10 @@
                 <button type="submit" class="bg-yellow-400 text-gray-900 px-6 py-2 rounded font-bold hover:bg-yellow-300">
                     Отправить идею
                 </button>
-            </form>
+                </form>
+            @else
+                <p>Для отправки идей нужно войти или зарегистрироваться.</p>
+            @endauth
         </div>
 
         <!-- Список отправленных идей -->
